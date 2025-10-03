@@ -94,6 +94,10 @@ public void scriptExe(List<String> script){
     public void appendText(String text) { //Добавить потом медленный вывод для красоты?
         textArea.append(text + "\n");
     }
+    public void setText(String text) {
+        inputField.setText(text+"\n");
+        processingText();
+    }
 
 }
 
