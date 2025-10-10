@@ -57,18 +57,15 @@ public class prettyGUI {
     }
 public void scriptExe(List<String> script){
     appendText("TESTING SCRIPT\n--------------------------------------");
-    inputField.setEnabled(false);
     for (String line : script){
-        inputField.setText(line);
-        processingText();
+        setText(line);
+        result = "";
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         }
-        inputField.setEnabled(true);
-        inputField.setText("");
     }
     
     public void processingText(){
@@ -83,22 +80,28 @@ public void scriptExe(List<String> script){
                     result = processor.process(inputText);
                 }
                 if (result != null && !result.isEmpty()) {
+                    if (result.equals("!")){
+                    scriptExe(processor.getSS());
+                }
                     String[] lines = result.split("\\n");
                     for (String line : lines) {
                         appendText(line);
                     }
                 }
-                inputField.setText(""); // Очищаем поле ввода
+                 // Очищаем поле ввода
     }
     
     public void appendText(String text) { //Добавить потом медленный вывод для красоты?
         textArea.append(text + "\n");
     }
     public void setText(String text) {
-        inputField.setText(text+"\n");
+        inputField.setText(text);
         processingText();
+        inputField.setText("");
     }
-
+        public void setUNflagTr(){
+        this.UN = true;
+    }
 }
 
 
